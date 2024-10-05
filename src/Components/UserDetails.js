@@ -20,8 +20,7 @@ const UsersDetails = () => {
 
     const totalPages = Math.ceil(users.length / usersPerPage);
     const currentUsers = users.slice((currentPage - 1) * usersPerPage, currentPage * usersPerPage);
-
-    const handleDeleteUser = (id) => dispatch(deleteUser(id));
+    
 
     const fetchUsers = async () => {
         setLoading(true);
@@ -42,6 +41,18 @@ const UsersDetails = () => {
             console.error('Error fetching users:', error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleDeleteUser = (id) => {
+        dispatch(deleteUser(id));
+        const updatedUsers = users.filter(user => user.id !== id);
+        const totalPagesAfterDelete = Math.ceil(updatedUsers.length / usersPerPage);
+        
+        if (currentPage > totalPagesAfterDelete && totalPagesAfterDelete > 0) {
+            setCurrentPage(totalPagesAfterDelete);
+        } else if (updatedUsers.length === 0) {
+            setCurrentPage(1); 
         }
     };
 
