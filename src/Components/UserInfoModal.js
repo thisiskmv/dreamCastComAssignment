@@ -22,6 +22,8 @@ export const UserInfoModal = ({
         onHide();
     }
 
+    console.log(initialValues,"initialValues")
+
     return (
         <Modal show={showModal} onHide={onHide}>
             <Modal.Header closeButton>
@@ -72,11 +74,11 @@ export const UserInfoModal = ({
                                 />
                             </Form.Group>
                             <Form.Group controlId="formBasicZipcode">
-                                <Controller 
+                                 <Controller 
                                     label="Zip Code" 
                                     control="input" 
                                     name="zipcode" 
-                                    type="number" 
+                                    type="text" 
                                     placeholder="e.g. 331023" 
                                 />
                             </Form.Group>
