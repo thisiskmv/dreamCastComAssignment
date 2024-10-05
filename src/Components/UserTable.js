@@ -1,14 +1,15 @@
 import React from 'react';
 import { Button, Card, Table, Spinner } from "react-bootstrap";
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 export const UserTable = ({ user, handleEditUser, handleDeleteUser, loading, currentPage, usersPerPage }) => {
     return (
-        <Card className='mb-3'>
-            <Card.Body>
-                <Table striped bordered hover responsive variant="light">
-                    <thead>
+        <Card className='mb-5 shadow-sm rounded'>
+            <Card.Body className="p-0">
+                <Table hover responsive className="mb-0 user-table">
+                    <thead className="table-header">
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -17,33 +18,40 @@ export const UserTable = ({ user, handleEditUser, handleDeleteUser, loading, cur
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="bg-light">
                         {loading ? (
                             <tr>
                                 <td colSpan="7" className="text-center">
-                                    <Spinner animation="border" role="status">
+                                    <Spinner animation="border" role="status" className="text-primary">
                                         <span className="visually-hidden">Loading...</span>
                                     </Spinner>
-                                    <p>Loading users...</p>
+                                    <p className="mt-2 fw-semibold">Loading users...</p>
                                 </td>
                             </tr>
                         ) : (
                             user && user.length > 0 ? (
                                 user.map((user, index) => (
-                                    <tr key={user.id}>
-                                        {/* Display ID based on pagination */}
-                                        <td>{user.id}</td>
-                                        <td>{user.name}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.phone}</td>
-                                        <td>{user.city}</td>
-                                        <td>{user.zipcode}</td>
-                                        <td>
-                                            <Button variant="secondary" onClick={() => handleEditUser(user)} className="me-2">
-                                                Edit
+                                    <tr key={user.email} className="align-middle">
+                                        <td className="fw-bold py-3">{(currentPage - 1) * usersPerPage + index + 1}</td>
+                                        <td className="py-3">{user.name}</td>
+                                        <td className="py-3">{user.email}</td>
+                                        <td className="py-3">{user.phone}</td>
+                                        <td className="py-3">{user.city}</td>
+                                        <td className="py-3">{user.zipcode}</td>
+                                        <td className="d-flex py-3">
+                                            <Button
+                                                variant="outline-primary"
+                                                onClick={() => handleEditUser(user)}
+                                                className="me-2 d-flex align-items-center btn-sm"
+                                            >
+                                                <FaEdit />
                                             </Button>
-                                            <Button variant="danger" onClick={() => handleDeleteUser(user.id)}>
-                                                Delete
+                                            <Button
+                                                variant="outline-danger"
+                                                onClick={() => handleDeleteUser(user.id)}
+                                                className="d-flex align-items-center btn-sm"
+                                            >
+                                                <FaTrashAlt />
                                             </Button>
                                         </td>
                                     </tr>

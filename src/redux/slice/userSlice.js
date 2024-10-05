@@ -12,7 +12,6 @@ const userSlice = createSlice({
             state.users = action.payload;
         },
         addUser: (state, action) => {
-            // Prepend new user to the users array
             state.users.unshift(action.payload);
         },
         updateUser: (state, action) => {
@@ -28,8 +27,7 @@ const userSlice = createSlice({
     },
 });
 
-// Export actions
+
 export const { setUsers, addUser, updateUser, deleteUser } = userSlice.actions;
 
-// Export the reducer
 export default userSlice.reducer;

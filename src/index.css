@@ -1,1 +1,50 @@
+.error-msg {
+    color: red !important;
+    font-size: 12px !important;
+    margin-top: -2px !important;
+}
+
+.stylish-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+    border-bottom: 2px solid #8e44ad;
+    display: inline-block;
+}
+
+.thStyle {
+    border-bottom: 3px solid rgb(195 195 195);
+    padding: 11px
+}
+
+.error-msg {
+    color: red;
+    font-size: 12px;
+    margin-top: -2px;
+    display: block;
+}
+
+
+.user-table {
+    font-size: 0.95rem;
+}
+
+.table-header {
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    color: #fff;
+    font-weight: bold;
+}
+
+.table-header th {
+    padding: 10px;
+    border-bottom: 3px solid #68767a;
+}
+
+.align-middle {
+    vertical-align: middle;
+}
 

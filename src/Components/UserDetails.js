@@ -9,10 +9,7 @@ import 'react-responsive-pagination/themes/classic.css';
 
 const UsersDetails = () => {
     const dispatch = useDispatch();
-
-    
     const users = useSelector((state) => state.users.users);
-
     const [showModal, setShowModal] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [formData, setFormData] = useState({ name: '', email: '', phone: '', city: '', zipcode: '' });
@@ -21,17 +18,11 @@ const UsersDetails = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const usersPerPage = 5;
 
-    // Calculate total pages and current users
     const totalPages = Math.ceil(users.length / usersPerPage);
     const currentUsers = users.slice((currentPage - 1) * usersPerPage, currentPage * usersPerPage);
 
-    // Handle input changes
-    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    // Handle delete user
     const handleDeleteUser = (id) => dispatch(deleteUser(id));
 
-    // Fetch users from API
     const fetchUsers = async () => {
         setLoading(true);
         try {
@@ -54,22 +45,19 @@ const UsersDetails = () => {
         }
     };
 
-    // Handle adding a new user
     const handleAddUser = (values) => {
-        // Ensure user IDs are valid numbers
         const userIds = users.map(user => user.id).filter(id => typeof id === 'number');
-        const newId = userIds.length > 0 ? Math.max(...userIds) + 1 : 1; // Generate new ID
+        const newId = userIds.length > 0 ? Math.max(...userIds) + 1 : 1; 
 
         const newUser = {
             id: newId,
             ...values,
         };
         dispatch(addUser(newUser));
-        setCurrentPage(1); // Reset to page 1
+        setCurrentPage(1);
         resetForm();
     };
 
-    // Handle editing a user
     const handleEditUser = (user) => {
         setEditMode(true);
         setEditingUserId(user.id);
@@ -77,13 +65,11 @@ const UsersDetails = () => {
         setShowModal(true);
     };
 
-    // Handle updating a user
     const handleUpdateUser = (values) => {
         dispatch(updateUser({ id: editingUserId, updatedData: values }));
-        resetForm(); // Keep current page unchanged
+        resetForm();
     };
 
-    // Reset form fields
     const resetForm = () => {
         setFormData({ name: '', email: '', phone: '', city: '', zipcode: '' });
         setShowModal(false);
@@ -91,14 +77,13 @@ const UsersDetails = () => {
         setEditingUserId(null);
     };
 
-    // Fetch users on component mount
     useEffect(() => {
         fetchUsers();
     }, [dispatch]);
 
     return (
         <Container className="mt-5">
-            <h2 className="text-center mb-4">User List</h2>
+           <h2 className="text-center mb-4 stylish-heading">User List</h2>
             <div className="d-flex justify-content-end mb-3">
                 <Button variant="primary" onClick={() => setShowModal(true)}>
                     Add User
@@ -110,8 +95,8 @@ const UsersDetails = () => {
                 handleEditUser={handleEditUser}
                 handleDeleteUser={handleDeleteUser}
                 loading={loading}
-                currentPage={currentPage} // Pass currentPage
-                usersPerPage={usersPerPage} // Pass usersPerPage
+                currentPage={currentPage}
+                usersPerPage={usersPerPage} 
             />
 
 
@@ -129,7 +114,6 @@ const UsersDetails = () => {
                 editMode={editMode}
                 handleUpdateUser={handleUpdateUser}
                 handleAddUser={handleAddUser}
-                handleChange={handleChange}
                 initialValues={formData}
             />
         </Container>

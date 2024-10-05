@@ -24,12 +24,6 @@ const InputField = ({
     setFieldValue(name, inputValue); 
   };
 
-  const errorStyle={
-    color: 'red',
-    fontSize: '12px',
-    marginTop: '-2px',
-    display: 'block',
-  }
 
   return (
     <div className="form-group">
@@ -53,7 +47,6 @@ const InputField = ({
         render={(msg) => (
           <span
             className="error-msg"
-            style={errorStyle}
           >
             {msg}
           </span>
