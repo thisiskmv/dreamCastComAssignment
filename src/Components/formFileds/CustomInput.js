@@ -1,11 +1,10 @@
 import React from 'react';
 import { ErrorMessage, Field, useFormikContext } from 'formik';
-
 const InputField = ({
   label,  
   name,   
   inputClass, 
-  type = 'text',
+  type ,
   maxLength,   
   minLength,    
   shouldUppercase,  
@@ -17,10 +16,7 @@ const InputField = ({
 
   const handleInputChange = (e) => {
     let inputValue = e.target.value;
-
-    if (shouldUppercase) {
-      inputValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
-    }
+    
     setFieldValue(name, inputValue); 
   };
 

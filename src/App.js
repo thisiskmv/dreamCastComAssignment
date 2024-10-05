@@ -3,9 +3,7 @@ import UsersDetails from './Components/UserDetails';
 
 const App = () => {
   return (
-    <div>
-
-      
+    <div>    
       <UsersDetails />
     </div>
   );
